@@ -2,8 +2,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.Arrays;
+import java.util.List;
 
 import usersummeries.UserDataProcessor;
+import usersummeries.queries.GroupByYear;
+import usersummeries.queries.IQuery;
+import usersummeries.queries.MeanBalance;
+import usersummeries.queries.MeanUnreadMessages;
+import usersummeries.queries.MedianAge;
+import usersummeries.queries.MedianFriends;
 
 public class Application
 {
@@ -19,7 +27,15 @@ public class Application
         {
             FileInputStream fileStream = new FileInputStream(args[0]);
             Reader fileReader = new InputStreamReader(fileStream);
-            UserDataProcessor.processUsersFromStream(fileReader);
+
+            List<IQuery> queries = Arrays.asList(
+                    new GroupByYear(),
+                    new MedianFriends(),
+                    new MedianAge(),
+                    new MeanBalance(),
+                    new MeanUnreadMessages());
+
+            UserDataProcessor.processUsersFromStream(fileReader, queries);
         }
         catch (IOException e)
         {
