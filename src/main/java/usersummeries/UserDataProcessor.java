@@ -12,6 +12,7 @@ import java.util.List;
 
 import usersummeries.queries.GroupByYear;
 import usersummeries.queries.IQuery;
+import usersummeries.queries.MedianFriends;
 
 public class UserDataProcessor
 {
@@ -19,7 +20,10 @@ public class UserDataProcessor
 
     public static void processUsersFromStream(Reader reader) throws IOException
     {
-        List<IQuery> queries = Arrays.asList(new GroupByYear());
+        List<IQuery> queries = Arrays.asList(
+                new GroupByYear(),
+                new MedianFriends());
+
         List<User> users = new ArrayList<>();
         JsonReader jsonReader = new JsonReader(reader);
         Gson gson = new GsonBuilder()
