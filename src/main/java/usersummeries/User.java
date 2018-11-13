@@ -28,6 +28,12 @@ public class User
 
     }
 
+    @Override
+    public String toString()
+    {
+        return name;
+    }
+
     public String getGuid()
     {
         return guid;
