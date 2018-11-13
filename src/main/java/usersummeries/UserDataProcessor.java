@@ -13,6 +13,7 @@ import java.util.List;
 import usersummeries.queries.GroupByYear;
 import usersummeries.queries.IQuery;
 import usersummeries.queries.MeanBalance;
+import usersummeries.queries.MeanUnreadMessages;
 import usersummeries.queries.MedianAge;
 import usersummeries.queries.MedianFriends;
 
@@ -26,7 +27,8 @@ public class UserDataProcessor
                 new GroupByYear(),
                 new MedianFriends(),
                 new MedianAge(),
-                new MeanBalance());
+                new MeanBalance(),
+                new MeanUnreadMessages());
 
         List<User> users = new ArrayList<>();
         JsonReader jsonReader = new JsonReader(reader);

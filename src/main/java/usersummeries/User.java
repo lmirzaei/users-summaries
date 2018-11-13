@@ -21,6 +21,7 @@ public class User
     private Date registered;
     private List<Friend> friends;
     private String greeting;
+    private int unreadMessages = Integer.MIN_VALUE;
     private String favoriteFruit;
 
     public User()
@@ -32,6 +33,18 @@ public class User
     public String toString()
     {
         return name;
+    }
+
+    public int getUnreadMessages()
+    {
+        if (unreadMessages == Integer.MIN_VALUE)
+        {
+            // The number of unread messages is the third to last part of the greeting!
+            String[] parts = getGreeting().split(" ");
+            unreadMessages = Integer.parseInt(parts[parts.length - 3]);
+        }
+
+        return unreadMessages;
     }
 
     public String getGuid()
